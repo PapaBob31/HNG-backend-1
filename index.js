@@ -17,6 +17,8 @@ function setCorsHeaders(req, res, next) {
 /** Returns a boolean indicating a number is a perfect number or not
  * @param {number} num - The number to check if it's a perfect number */
 function isPerfect(num) {
+	if (num === 1)
+		return false
 	const factors = [1];
 	for (let i=2; i<Math.ceil(num/2); i++) {
 		if (factors.includes(i)) { // we know it's a factor already
@@ -77,7 +79,7 @@ function numIsArmstrong(number, digits) {
 	for (digit of digits) {
 		result += Math.pow(digit, digits.length)
 	}
-	return result === number
+	return result === Math.abs(number)
 }
 
 app.use(setCorsHeaders)
