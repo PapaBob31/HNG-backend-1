@@ -6,7 +6,7 @@ const axios = require('axios')
 // Handles CORS
 function setCorsHeaders(req, res, next) {
 	const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:3700'
-	res.set('Access-Control-Allow-Origin', allowedOrigin)
+	res.set('Access-Control-Allow-Origin', "*")
 	res.set('Access-Control-Allow-Headers', 'Content-Type')
 	res.set("Access-Control-Max-Age", "86400");	// 24 hours
 	res.set("Access-Control-Allow-Methods", "GET, OPTIONS");
