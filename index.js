@@ -88,10 +88,17 @@ app.get("/api/classify-number", async (req, res) => {
 	numIsArmstrong(number, digits) && numberProps.push("armstrong");
 	(number % 2) === 0 ? numberProps.push("even") : numberProps.push("odd")
 
-	const funFact =  (await axios({
-		method: "get",
-		url: `http://numbersapi.com/${req.query.number}/math`,
-	})).data
+	let funFact;
+	try  {
+		funFact = (await axios({
+			method: "get",
+			url: `http://numbersapi.com/${req.query.number}/math`,
+		})).data
+	}catch(err) {
+		console.log(err.msg)
+		funFact: "<Error occured while trying to query numbersapi.com. Check your logs if you are the dev>"
+	}
+	
 
 	res.status(200).json({
 		number: parseInt(req.query.number), 
