@@ -18,6 +18,8 @@ function setCorsHeaders(req, res, next) {
 /** Returns a boolean indicating a number is a perfect square or not
  * @param {number} num - The number to check if it's a perfect square */
 function isPerfect(num) {
+	if (num < 0)
+		return false
 	const numSqrt = Math.sqrt(num)
 	return Math.floor(numSqrt) === numSqrt
 }
@@ -40,6 +42,7 @@ function isPrime(num) {
 /** Returns an array of the digits that make up a number
  * @param {number} number - The number whose digits would be returned */
 function seperateDigits(number) {
+	number = Math.abs(number)
 	let digits = [];
 	while(true) {
 		digits.push(number%10) // get the last digit of the numbe
@@ -87,7 +90,7 @@ app.get("/api/classify-number", async (req, res) => {
 
 	const funFact =  (await axios({
 		method: "get",
-		url: `http://numbersapi.com/${req.query.number}`,
+		url: `http://numbersapi.com/${req.query.number}/math`,
 	})).data
 
 	res.status(200).json({
