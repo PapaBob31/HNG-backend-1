@@ -94,7 +94,7 @@ app.get("/api/classify-number", async (req, res) => {
 	})).data
 
 	res.status(200).json({
-		number: req.query.number, 
+		number: parseInt(req.query.number), 
 		is_prime: isPrime(number),
 		is_perfect: isPerfect(number),
 		properties: numberProps,
