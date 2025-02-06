@@ -1,0 +1,16 @@
+{
+  "name": "hng-backend-1",
+  "version": "1.0.0",
+  "description": "Stage 1 backend task for hng internship",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "egbebitimi121",
+  "license": "MIT",
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.34.0",
+    "axios": "^1.7.9",
+    "express": "^4.21.2"
+  }
+}
