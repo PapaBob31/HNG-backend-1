@@ -86,7 +86,7 @@ app.use(setCorsHeaders)
 
 app.get("/api/classify-number", async (req, res) => {
 	if (!req.query?.number || req.query.number.includes('.') || isNaN(parseInt(req.query.number))) {
-		res.status(400).json({number: req.query.number, error: true})
+		res.status(400).json({number: "alphabet", error: true})
 		return
 	}
 	const number = parseInt(req.query.number)
