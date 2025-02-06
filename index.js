@@ -14,13 +14,20 @@ function setCorsHeaders(req, res, next) {
 	}else next()
 }
 
-/** Returns a boolean indicating a number is a perfect square or not
- * @param {number} num - The number to check if it's a perfect square */
+/** Returns a boolean indicating a number is a perfect number or not
+ * @param {number} num - The number to check if it's a perfect number */
 function isPerfect(num) {
-	if (num < 0)
-		return false
-	const numSqrt = Math.sqrt(num)
-	return Math.floor(numSqrt) === numSqrt
+	const factors = [1];
+	for (let i=2; i<Math.ceil(num/2); i++) {
+		if (factors.includes(i)) { // we know it's a factor already
+			continue
+		}
+		if ((num % i) === 0) {
+			factors.push(i, num/i)
+		}
+	}
+	console.log(factors)
+	return sum(factors) === num
 }
 
 /** Returns a boolean indicating a number is prime or not
@@ -78,7 +85,7 @@ app.use(setCorsHeaders)
 
 app.get("/api/classify-number", async (req, res) => {
 	if (!req.query?.number || req.query.number.includes('.') || isNaN(parseInt(req.query.number))) {
-		res.status(400).json({number: "alphabet", error: "true"})
+		res.status(400).json({number: req.query.number, error: "true"})
 		return
 	}
 	const number = parseInt(req.query.number)
