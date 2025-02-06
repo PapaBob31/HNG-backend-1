@@ -89,7 +89,6 @@ app.get("/api/classify-number", async (req, res) => {
 		method: "get",
 		url: `http://numbersapi.com/${req.query.number}`,
 	})).data
-	console.log(funFact)
 
 	res.status(200).json({
 		number: req.query.number, 

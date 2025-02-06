@@ -4,6 +4,7 @@
   "description": "Stage 1 backend task for hng internship",
   "main": "index.js",
   "scripts": {
+    "start": "dotenvx run -f .env.local -- node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "egbebitimi121",
