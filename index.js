@@ -85,7 +85,7 @@ function numIsArmstrong(number, digits) {
 app.use(setCorsHeaders)
 
 app.get("/api/classify-number", async (req, res) => {
-	if (!req.query?.number || req.query.number.includes('.') || isNaN(parseInt(req.query.number))) {
+	if (!req.query?.number || req.query.number.includes('.') || !(/^-?\d+$/).test(req.query.number)) {
 		res.status(400).json({number: "alphabet", error: true})
 		return
 	}
@@ -102,8 +102,8 @@ app.get("/api/classify-number", async (req, res) => {
 			url: `http://numbersapi.com/${req.query.number}/math`,
 		})).data
 	}catch(err) {
-		console.log(err.msg)
-		funFact: "<Error occured while trying to query numbersapi.com. Check your logs if you are the dev>"
+		console.log(err.message)
+		funFact = "<Error occured while trying to query numbersapi.com. Check your logs if you are the dev>"
 	}
 	
 
